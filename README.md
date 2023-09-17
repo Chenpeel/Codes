@@ -2,4 +2,4 @@
 
 ### Go to  My Site to See More Details   
 
-### <center><h3> 👉[Here](https://chenpeel.github.io/2023/07/13/notes/algorithms/algos/) 👈 </h3></center>
+### <center><h3> 👉[Here](https://chenpeel.github.io/) 👈 </h3></center>
