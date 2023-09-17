@@ -1,0 +1,52 @@
+a:link {
+    color: gray;
+    text-decoration: none;
+}
+
+a:visited {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover {
+    color: deeppink;
+    text-decoration: none;
+}
+
+a:active {
+    color: yellow;
+    text-decoration: none;
+}
+
+p:first-letter {
+    font-weight: bold;
+    font-family: "黑体";
+}
+
+p:first-line {
+    font-size: 32px;
+}
+
+p {
+    text-align: center;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+}
+
+.red {
+
+    background-color: red;
+}
+
+.gre {
+
+    background-color: green;
+}
+
+h2 {
+    color: rgb(68, 0, 81);
+    font-size: 40px;
+}
