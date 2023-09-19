@@ -1,3 +1,3 @@
 #!bin/zsh
-ping baidu.com
+ping -i 1 -c 10 -R  baidu.com
 
