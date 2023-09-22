@@ -7,7 +7,7 @@ from ball import *
 class Game(object):
     def __init__(self, surface):
         self.surface = surface
-        self.Load(1)
+        self.Load(2)
 
     def Load(self, lv):
         self.level = Level(lv)
@@ -103,7 +103,7 @@ class Game(object):
     def copyBalls(self):
         balls = [ball for ball in self.balls]
         for ball in balls:
-            self.loadOneBall(ball.Get_Rect().x,ball.Get_Rect().y,1,-1)
+            self.loadBall(ball.Get_Rect().x,ball.Get_Rect().y,1,-1)
     
     def isGameWin(self):
         for block in self.blocks:
