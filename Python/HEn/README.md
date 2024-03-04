@@ -20,7 +20,7 @@
 
 1. 先将此库下载到本地
 
-前置问题:Windows设置git、python等环境变量
+前置问题:Windows设置git、python等环境
 
 Linux & Mac: 包管理: Homebrew(Mac) , apt/rpm...(Linux)  $\to$下载git,python 
 
