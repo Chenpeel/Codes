@@ -29,6 +29,7 @@ public:
         listSize = LIST_INIT_SIZE;
         length = 0;
     }
+
     ~Sequeue_List(){
         delete[] elem;
     }

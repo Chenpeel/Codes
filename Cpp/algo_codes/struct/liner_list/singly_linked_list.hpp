@@ -11,18 +11,40 @@ struct Node {
   Node* next;
 };
 
-// 单向链表类
 template <typename T>
 class Singly_Linked_List {
- public:
-  Node<T>* head; // 链表头指针
-  int size; // 链表中节点的数量
+ private:
+  int size;
 
-  Singly_Linked_List() : head(nullptr), size(0) {} // 构造函数，初始化链表为空
-  ~Singly_Linked_List(); // 析构函数，释放链表中节点的内存
+ public:
+  Node<T>* head;
+
+  Singly_Linked_List() : head(nullptr), size(0) {}
+  ~Singly_Linked_List();
+  bool isEmpty();
+  
+  void size_plus_one() {
+    this->size++;
+  }
+
+  void size_reduce_one() {
+    this->size--;
+  }
+
+  int GetSize() const {
+    return this->size;
+  }
+  
+  void InsertFront();
+  void InsertAtI();
+  void InsertBack();
+  void Print();
+  void GetElem();
+  void DeleteNode();
+  void Merge_List();
 };
 
-// 析构函数，释放链表中所有节点的内存
+
 template <typename T>
 Singly_Linked_List<T>::~Singly_Linked_List() {
   Node<T>* current = head;
@@ -33,23 +55,41 @@ Singly_Linked_List<T>::~Singly_Linked_List() {
   }
 }
 
-// 判断链表是否为空
-template<typename T>
-bool isEmpty(Singly_Linked_List<T>& list){
-  return list.size == 0;
+template <typename T>
+bool isEmpty(Singly_Linked_List<T>& list) {
+  return list.GetSize() == 0;
 }
 
-// 在链表头部插入元素
 template <typename T>
 void InsertFront(Singly_Linked_List<T>& list, const T& data) {
   Node<T>* new_node = new Node<T>;
   new_node->data = data;
   new_node->next = list.head;
   list.head = new_node;
-  list.size++;
+  list.size_plus_one();
 }
 
-// 在链表尾部插入元素
+template <typename T>
+void InsertAtI(Singly_Linked_List<T>& list, const int i, T const data) {
+  Node<T>* new_node = new Node<T>;
+  new_node->data = data;
+  new_node->next = nullptr;
+  if (i==1){
+    std::cout << "Please Use InsertFront in place of InsertAtI(list,1,num)" << std::endl;
+  }
+  else {
+    Node<T>* current = list.head;
+    int tmp = 0;
+    while (current->next != nullptr && tmp < i - 2) {
+      current = current->next;
+      tmp ++ ;
+    }
+    new_node->next = current->next;
+    current->next = new_node;
+  }
+  list.size_plus_one();
+}
+
 template <typename T>
 void InsertBack(Singly_Linked_List<T>& list, const T& data) {
   Node<T>* new_node = new Node<T>;
@@ -64,10 +104,9 @@ void InsertBack(Singly_Linked_List<T>& list, const T& data) {
     }
     current->next = new_node;
   }
-  list.size++;
+  list.size_plus_one();
 }
 
-// 按照节点指针方式打印链表
 template <typename T>
 void PrintNode(const Node<T>* head) {
   if (!head) {
@@ -82,7 +121,6 @@ void PrintNode(const Node<T>* head) {
     ss << print_node->data << ", ";
     print_node = print_node->next;
   }
-  // 规整输出样式
   std::string result = ss.str();
   if (result.length() > 2) {
     result = result.substr(0, result.length() - 2);
@@ -91,10 +129,9 @@ void PrintNode(const Node<T>* head) {
   std::cout << result << std::endl;
 }
 
-// 打印链表
 template <typename T>
 void Print(const Singly_Linked_List<T>& list) {
-  if (list.size == 0) {
+  if (list.GetSize() == 0) {
     std::cout << "Empty List" << std::endl;
     return;
   }
@@ -106,7 +143,6 @@ void Print(const Singly_Linked_List<T>& list) {
     ss << print_node->data << ", ";
     print_node = print_node->next;
   }
-  // 规整输出样式
   std::string result = ss.str();
   if (result.length() > 2) {
     result = result.substr(0, result.length() - 2);
@@ -118,7 +154,7 @@ void Print(const Singly_Linked_List<T>& list) {
 // 获取链表中第 n 个位置的元素
 template <typename T>
 T GetElem(const Singly_Linked_List<T>& list, const int n) {
-  if (n < 1 || n > list.size) {
+  if (n < 1 || n > list.GetSize()) {
     std::cout << "Wrong Position" << std::endl;
     return T();
   }
@@ -134,7 +170,7 @@ T GetElem(const Singly_Linked_List<T>& list, const int n) {
 // 删除链表中第 n 个位置的节点
 template <typename T>
 T DeleteNode(Singly_Linked_List<T>& list, const int n) {
-  if (n < 1 || n > list.size) {
+  if (n < 1 || n > list.GetSize()) {
     std::cout << "Wrong Position" << std::endl;
     return T();
   }
@@ -149,14 +185,14 @@ T DeleteNode(Singly_Linked_List<T>& list, const int n) {
     T res = del_node->data;
     list.head = del_node->next;
     delete del_node;
-    list.size--;
+    list.size_reduce_one();
     return res;
   } else {
     Node<T>* del_node = current->next;
     T res = del_node->data;
     current->next = del_node->next;
     delete del_node;
-    list.size--;
+    list.size_reduce_one();
     return res;
   }
 }
@@ -197,6 +233,7 @@ Singly_Linked_List<T> Merge_List(const Singly_Linked_List<T>& L1,
   }
   if (p1) p->next = p1;
   if (p2) p->next = p2;
+  mergedList.size = L1.size + L2.size;
   return mergedList;
 }
 

@@ -26,14 +26,21 @@ int main() {
   Singly_Linked_List<float> slist;
   while(slist.GetSize()<25)
   {
-      slist.InsertFront(rd_float()*100);
-      slist.InsertBack(rd_float()*100);
+      InsertFront(slist,rd_float()*100);
+      InsertBack(slist,rd_float()*100);
       continue;
-  }
-  slist.InsertAtI(2,10.0);
-  slist.Print();
-  cout << slist.GetSize()<<endl;
+  } 
+    cout << slist.GetSize()<<endl;
+    Print(slist);
+    InsertFront(slist,1.22F);
+    Print(slist);
+    InsertAtI(slist,2,10.0000F);
+    Print(slist);
+    InsertBack(slist,12.203F);
+    Print(slist);
+    cout << slist.GetSize()<<endl;
   */
+ 
   /*
   // 双向链表测试
 
@@ -74,7 +81,7 @@ int main() {
 
   // 合并链表
   DoublyLinkedList<int> mergedList = Merge(list1, list2);
-  Print(mergedList);
+  Print(mergedLi:st);
   */
 
   /*
