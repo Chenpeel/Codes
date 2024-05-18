@@ -19,24 +19,12 @@ class Linked_Stack {
 
   ~Linked_Stack() { clear(); }
 
-  void InitStack() {
-    top = nullptr;
-    length = 0;
-  }
+  bool empty() const { return (top == nullptr); }
 
-  void DestroyStack() {
-    clear();
-    std::cout << "Stack has been destroyed" << std::endl;
-  }
+  int length() const { return length; }
 
-  void ClearStack() { clear(); }
-
-  bool StackEmpty() const { return (top == nullptr); }
-
-  int StackLength() const { return length; }
-
-  T GetTop() const {
-    if (StackEmpty()) {
+  T get_top() const {
+    if (empty()) {
       std::cout << "[warning]: Empty stack" << std::endl;
       return T();
     }
@@ -75,6 +63,7 @@ class Linked_Stack {
     std::cout << std::endl;
   }
 
+  // 进制转换
   void Conversion(long num, int R) {
     long temp = num;
     if (R <= 1) {

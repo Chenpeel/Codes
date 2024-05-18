@@ -35,7 +35,7 @@ class Circular_Queue {
 
   int GetSize() const { return size; }
 
-  void Enqueue(const T& data) {
+  void push(const T& data) {
     Node* new_node = new Node;
     new_node->data = data;
     new_node->next = nullptr;
@@ -54,7 +54,7 @@ class Circular_Queue {
     size = std::min(size + 1, capacity);
   }
 
-  T Dequeue() {
+  void pop() {
     if (IsEmpty()) {
       std::cout << "Queue is empty!" << std::endl;
       return T();

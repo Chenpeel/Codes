@@ -88,6 +88,7 @@ class Sequeue_Stack {
       std::cout << std::endl;
     }
 
+    // 进制转换
     void Conversion(long num, int R) {
       long temp = num;
       if (R <= 1) {

@@ -10,3 +10,5 @@ gcc -I/opt/homebrew/Cellar/glfw/3.4/include \
     -o test
 
 ./test
+
+rm ./test

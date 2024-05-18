@@ -16,3 +16,5 @@ MyTinySTL
 build
 *.log
 *.aux
+
+data_structure

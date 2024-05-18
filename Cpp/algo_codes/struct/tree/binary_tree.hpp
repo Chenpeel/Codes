@@ -28,7 +28,6 @@ class Binary_Tree {
   void insert(const T& data) { insertNode(root, data); }
 
  private:
-  // 析构
   void destroy(BinNode<T>* node) {
     if (node) {
       destroy(node->left);
