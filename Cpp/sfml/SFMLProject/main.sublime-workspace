@@ -1,0 +1,282 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"d",
+				"devidend"
+			],
+			[
+				"div",
+				"divisior"
+			],
+			[
+				"b",
+				"generate_business"
+			],
+			[
+				"scheme",
+				"sublime-color-scheme"
+			],
+			[
+				"D",
+				"Dimmed"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"sel scheme",
+				"UI: Select Color Scheme"
+			],
+			[
+				"selec sche",
+				"UI: Select Color Scheme"
+			],
+			[
+				"sel",
+				"UI: Select Theme"
+			],
+			[
+				"selec them",
+				"UI: Select Theme"
+			],
+			[
+				"selec theme",
+				"UI: Select Theme"
+			],
+			[
+				"selec the",
+				"Selection: Expand to Paragraph"
+			],
+			[
+				"selec cch",
+				"UI: Select Color Scheme"
+			],
+			[
+				" selec the",
+				"UI: Select Color Scheme"
+			],
+			[
+				"sele",
+				"UI: Select Theme"
+			],
+			[
+				"selce",
+				"Selection: Expand"
+			],
+			[
+				"sele theme",
+				"UI: Select Color Scheme"
+			],
+			[
+				"selec",
+				"UI: Select Theme"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"comm",
+				"Toggle Comment"
+			],
+			[
+				"theme",
+				"UI: Select Color Scheme"
+			],
+			[
+				"instal",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 220.0,
+		"history":
+		[
+			"curl",
+			"https://github.com/vladimir-kotikov/SublimeAsteriskConfig.git",
+			"ls",
+			"exit()",
+			"exit",
+			"clear",
+			"os.pwd()",
+			"os.sjow",
+			"os.ls()",
+			"import os",
+			"os.ls()",
+			"os.ls",
+			"ls",
+			"clear"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/alpha/grade3learn/aitb/ex/maze_A_star.py",
+		"/Users/alpha/Library/Application Support/Sublime Text/Packages/Default/Preferences.sublime-settings",
+		"/Users/alpha/Library/Application Support/Sublime Text/Packages/User/Preferences.sublime-settings",
+		"/Users/alpha/grade3learn/aitb/ex/hanoi.pl",
+		"/Users/alpha/Desktop/blog/README.md",
+		"/Users/alpha/tmp.md",
+		"/Users/alpha/tmp.py",
+		"/Users/alpha/.python_history",
+		"/Users/alpha/Library/Application Support/Sublime Text/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/alpha/Library/Application Support/Sublime Text/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/alpha/ai/hw_num.ipynb",
+		"/Users/alpha/Desktop/Codes/Cpp/gl/test.cpp",
+		"/Users/alpha/cpp/mtrx/src/main.cc",
+		"/Users/alpha/cpp/mtrx/CMakeLists.txt"
+	],
+	"find":
+	{
+		"height": 82.0
+	},
+	"find_in_files":
+	{
+		"height": 146.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 45.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "main.sublime-project",
+	"replace":
+	{
+		"height": 86.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": false,
+	"side_bar_visible": true,
+	"side_bar_width": 351.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -7,7 +7,7 @@ from ball import *
 class Game(object):
     def __init__(self, surface):
         self.surface = surface
-        self.Load(2)
+        self.Load(1)
 
     def Load(self, lv):
         self.level = Level(lv)

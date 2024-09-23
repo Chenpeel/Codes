@@ -1,61 +1,59 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
+#include <GL/glut.h>
 #include <iostream>
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-  glViewport(0, 0, width, height);
+// 定义权重和阈值
+GLfloat weight[3] = {1.75123f, 2.50435f, -0.336639f};
+GLfloat theta = 0.0668295f;
+
+// 定义训练数据
+GLfloat train_data[][4] = {
+    {1, 1, 5, 1},
+    {1, 0, 5, 0},
+    {0, 1, 5, 0},
+    {0, 0, 5, 0}
+};
+
+// 渲染函数
+void renderScene(void) {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+
+    // 绘制训练数据点
+    glBegin(GL_POINTS);
+    for (int i = 0; i < 4; ++i) {
+        if (train_data[i][3] == 1) glColor3f(1.0f, 0.0f, 0.0f);
+        else glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f(train_data[i][0], train_data[i][1], train_data[i][2]);
+    }
+    glEnd();
+
+    // 绘制超平面
+    glBegin(GL_QUADS);
+    glColor3f(0.0f, 1.0f, 0.0f); // 设置颜色为绿色
+    glVertex3f(-1.0f, -1.0f, (-weight[0] * (-1.0f) - weight[1] * (-1.0f) - theta) / weight[2]);
+    glVertex3f(1.0f, -1.0f, (-weight[0] * 1.0f - weight[1] * (-1.0f) - theta) / weight[2]);
+    glVertex3f(1.0f, 1.0f, (-weight[0] * 1.0f - weight[1] * 1.0f - theta) / weight[2]);
+    glVertex3f(-1.0f, 1.0f, (-weight[0] * (-1.0f) - weight[1] * 1.0f - theta) / weight[2]);
+    glEnd();
+
+    glutSwapBuffers();
 }
 
-void processInput(GLFWwindow* window) {
-  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-    glfwSetWindowShouldClose(window, true);
-  }
+// 初始化函数
+void initGL(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+    glutInitWindowSize(800, 600);
+    glutCreateWindow("Perceptron Decision Boundary");
+
+    glEnable(GL_DEPTH_TEST);
+
+    glutDisplayFunc(renderScene);
+    glutMainLoop();
 }
 
-int main() {
-  std::cout << "hello world\n";
-
-  glfwInit();
-
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-
-  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-#ifndef __APPLE__
-  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif
-
-  GLFWwindow* window =
-      glfwCreateWindow(800, 600, "OpenGL Tutorial", NULL, NULL);
-  if (window == NULL) {
-    std::cout << "Failed to create GLFW window" << std::endl;
-    glfwTerminate();
-    return -1;
-  }
-
-  glfwMakeContextCurrent(window);
-
-  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-    std::cout << "Failed to initialize GLAD" << std::endl;
-    return -1;
-  }
-
-  glViewport(0, 0, 800, 600);
-  glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
-  while (!glfwWindowShouldClose(window)) {
-    processInput(window);
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // sned new frame to window
-
-    glfwSwapBuffers(window);
-    glfwPollEvents();
-  }
-  glfwTerminate();
-
-  return 0;
+// 主函数
+int main(int argc, char** argv) {
+    initGL(argc, argv);
+    return 0;
 }
