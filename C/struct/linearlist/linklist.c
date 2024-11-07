@@ -2,16 +2,16 @@
 #include <stdlib.h>
 
 // 单向链表
-typedef int LElemType;
+typedef int ElemType;
 
 typedef struct LNode {
-  LElemType data;
+  ElemType data;
   struct LNode *next;
 } LNode, *LinkList;
 
 /**
 struct LNode{
-  LElemType data;
+  ElemType data;
   struct LNode *next;
 };
 typedef struct LNode LNode;
@@ -20,9 +20,9 @@ typedef struct LNode *LinkList;
 
 // --------------------------------------------------------------------------------
 // 无头节点
-void initList(LinkList L) { L = NULL; }
-int emptyList(LinkList L) { return L == NULL; }
-void insertNextNode(LNode *const node, const LElemType data) {
+void initList(LinkList *L) { L = NULL; }
+int emptyList(LinkList *L) { return L == NULL; }
+void insertNextNode(LNode *const node, const ElemType data) {
   LNode *new_node = (LNode *)malloc(sizeof(LNode));
   if (new_node != NULL) {
     new_node->data = data;
@@ -30,14 +30,13 @@ void insertNextNode(LNode *const node, const LElemType data) {
     node->next = new_node;
   }
 }
-void insertPriorNode_p(LinkList L, const LNode *const node,
-                       const LElemType data) {
-  LNode *tmp = L;
-  if (node == L) {
+void insertPriorNode_p(LinkList *L, LNode *node, const ElemType data) {
+  LNode *tmp = *L;
+  if (node == *L) {
     LNode *new_node = (LNode *)malloc(sizeof(LNode));
     new_node->data = data;
     new_node->next = node;
-    L = new_node;
+    *L = new_node;
     return;
   }
   while (tmp != NULL && tmp->next != node) {
@@ -50,7 +49,7 @@ void insertPriorNode_p(LinkList L, const LNode *const node,
     tmp->next = new_node;
   }
 }
-void insertPriorNode_l(LNode *const node, const LElemType data) {
+void insertPriorNode_l(LNode *node, const ElemType data) {
   // 逻辑前插
   if (node != NULL) {
     LNode *new_node = (LNode *)malloc(sizeof(LNode));
@@ -60,19 +59,19 @@ void insertPriorNode_l(LNode *const node, const LElemType data) {
     node->next = new_node;
   }
 }
-void insertList(LinkList L, const LElemType data, const int pos) {
+void insertList(LinkList *L, const ElemType data, const int pos) {
   if (pos < 1) {
     printf("Underflow!\n");
     exit(-1);
   } else if (pos == 1) {
-    insertPriorNode_l(L, data);
+    insertPriorNode_l(*L, data);
     // LNode *new_node = (LNode *)malloc(sizeof(LNode));
     // new_node->data = data;
     // new_node->next = L;
     // L = new_node;
     return;
   }
-  LNode *tmp = L;
+  LNode *tmp = *L;
   int i = 1;
   while (tmp != NULL && i < pos - 1) {
     i++;
@@ -89,19 +88,19 @@ void insertList(LinkList L, const LElemType data, const int pos) {
   // tmp->next = new_node;
 }
 
-LElemType deleteNextNode(LNode *const node) {
+ElemType deleteNextNode(LNode *const node) {
   if (node && node->next) {
-    LElemType data = node->next->data;
+    ElemType data = node->next->data;
     node->next = node->next->next;
     return data;
   }
   return NULL;
 }
-LElemType deleteNode_p(LinkList L, LNode *node) {
-  LNode *tmp = L;
-  LElemType data = node->data;
-  if (node == L) {
-    L = node->next;
+ElemType deleteNode_p(LinkList *L, LNode *node) {
+  LNode *tmp = *L;
+  ElemType data = node->data;
+  if (node == *L) {
+    (*L) = node->next;
     return data;
   }
   while (tmp && tmp->next != node) {
@@ -112,23 +111,23 @@ LElemType deleteNode_p(LinkList L, LNode *node) {
   free(to_free);
   return data;
 }
-LElemType deleteNode_l(LNode *const node) {
+ElemType deleteNode_l(LNode *const node) {
   // 逻辑删除node节点
   if (node && node->next->next) {
-    LElemType data = node->data;
+    ElemType data = node->data;
     node->data = node->next->data;
     node->next = node->next->next;
     return data;
   }
   return NULL;
 }
-LElemType deleteListNode(LinkList L, const int pos) {
+ElemType deleteListNode(LinkList *L, const int pos) {
   if (pos < 1) {
     printf("Underflow!\n");
     return NULL;
   }
-  LNode *tmp = L;
-  LElemType data;
+  LNode *tmp = *L;
+  ElemType data;
   int i = 0;
   while (tmp != NULL && i < pos - 1) {
     i++;
@@ -144,12 +143,12 @@ LElemType deleteListNode(LinkList L, const int pos) {
   return NULL;
 }
 
-LNode *getElem(const LinkList L, const int pos) {
+LNode *getElem(const LinkList *L, const int pos) {
   if (pos < 1) {
     printf("Underflow!\n");
     return NULL;
   }
-  LNode *tmp = L;
+  LNode *tmp = *L;
   int i = 0;
   while (tmp && i < pos - 1) {
     tmp = tmp->next;
@@ -157,17 +156,17 @@ LNode *getElem(const LinkList L, const int pos) {
   return tmp;
 }
 
-LNode *locateElem(const LinkList L, LElemType data) {
-  LNode *tmp = L;
+LNode *locateElem(const LinkList *L, ElemType data) {
+  LNode *tmp = *L;
   while (tmp && tmp->data != data) {
     tmp = tmp->next;
   }
   return tmp;
 }
 
-int lenLinkList(const LinkList L) {
+int lenLinkList(const LinkList *L) {
   int len = 0;
-  LNode *tmp = L;
+  LNode *tmp = *L;
   while (tmp != NULL) {
     tmp = tmp->next;
     len++;
@@ -177,18 +176,18 @@ int lenLinkList(const LinkList L) {
 
 // --------------------------------------------------------------------------------
 // 有头节点
-void initList_h(LinkList L) {
-  L = (LNode *)malloc(sizeof(LNode));
-  L->next = NULL;
+void initList_h(LinkList *L) {
+  *L = (LNode *)malloc(sizeof(LNode));
+  (*L)->next = NULL;
 }
-int emptyList_h(LinkList L) { return L->next == NULL; }
+int emptyList_h(LinkList *L) { return (*L)->next == NULL; }
 
-void insertList_h(LinkList L, const LElemType data, const int pos) {
+void insertList_h(LinkList *L, const ElemType data, const int pos) {
   if (pos < 1) {
     printf("Underflow!\n");
     exit(-1);
   }
-  LNode *tmp = L;
+  LNode *tmp = *L;
   int i = 0;
   while (tmp != NULL && i < pos - 1) {
     tmp = tmp->next;
@@ -203,15 +202,15 @@ void insertList_h(LinkList L, const LElemType data, const int pos) {
   new_node->next = tmp->next;
   tmp->next = new_node;
 }
-void insertNextNode_h(LNode *const node, const LElemType data) {
+void insertNextNode_h(LNode *const node, const ElemType data) {
   LNode *new_node = (LNode *)malloc(sizeof(LNode));
   new_node->data = data;
   new_node->next = node->next;
   node->next = new_node;
 }
-void insertPriorNode_h_p(LinkList L, const LNode *const node,
-                         const LElemType data) {
-  LNode *tmp = L;
+void insertPriorNode_h_p(LinkList *L, const LNode *const node,
+                         const ElemType data) {
+  LNode *tmp = *L;
   while (tmp->next != node) {
     tmp = tmp->next;
   }
@@ -222,7 +221,7 @@ void insertPriorNode_h_p(LinkList L, const LNode *const node,
     tmp->next = new_node;
   }
 }
-void insertPriorNode_h_l(LNode *const node, const LElemType data) {
+void insertPriorNode_h_l(LNode *const node, const ElemType data) {
   LNode *new_node = (LNode *)malloc(sizeof(LNode));
   new_node->data = node->data;
   node->data = data;
@@ -230,8 +229,8 @@ void insertPriorNode_h_l(LNode *const node, const LElemType data) {
   node->next = new_node;
 }
 
-LElemType deleteNextNode_h(LNode *const node) {
-  LElemType data = node->next->data;
+ElemType deleteNextNode_h(LNode *const node) {
+  ElemType data = node->next->data;
   if (node->next) {
     LNode *to_free = node->next;
     node->next = node->next->next;
@@ -240,9 +239,9 @@ LElemType deleteNextNode_h(LNode *const node) {
   return data;
 }
 
-LElemType deleteNode_h_p(LinkList L, LNode *node) {
-  LNode *tmp = L;
-  LElemType data = node->data;
+ElemType deleteNode_h_p(LinkList *L, LNode *node) {
+  LNode *tmp = *L;
+  ElemType data = node->data;
   while (tmp->next != node) {
     tmp = tmp->next;
   }
@@ -252,22 +251,22 @@ LElemType deleteNode_h_p(LinkList L, LNode *node) {
   return data;
 }
 
-LElemType deleteNode_h_l(LinkList L, LNode *const node) {
+ElemType deleteNode_h_l(LinkList *L, LNode *const node) {
   if (node->next != NULL) {
     LNode *to_free = node->next;
-    LElemType data = node->data;
+    ElemType data = node->data;
     node->data = to_free->data;
     node->next = to_free->next;
     free(to_free);
   }
 }
-LElemType deleteListNode_h(LinkList L, const int pos) {
+ElemType deleteListNode_h(LinkList *L, const int pos) {
   if (pos < 1) {
     printf("Underflow!\n");
     return NULL;
   }
-  LNode *tmp = L;
-  LElemType data;
+  LNode *tmp = *L;
+  ElemType data;
   int i = 0;
   while (tmp != NULL && i < pos - 1) {
     tmp = tmp->next;
@@ -282,12 +281,12 @@ LElemType deleteListNode_h(LinkList L, const int pos) {
   return NULL;
 }
 
-LNode *getElem_h(const LinkList L, const int pos) {
+LNode *getElem_h(const LinkList *L, const int pos) {
   if (pos < 1) {
     printf("Underflow!\n");
     return NULL;
   }
-  LNode *tmp = L;
+  LNode *tmp = *L;
   int i = 0;
   while (tmp->next && i < pos) {
     tmp = tmp->next;
@@ -296,16 +295,16 @@ LNode *getElem_h(const LinkList L, const int pos) {
   return tmp;
 }
 
-LNode *locateElem_h(const LinkList L, const LElemType data) {
-  LNode *tmp = L->next;
+LNode *locateElem_h(const LinkList *L, const ElemType data) {
+  LNode *tmp = (*L)->next;
   while (tmp && tmp->data != data) {
     tmp = tmp->next;
   }
   return tmp;
 }
-int lenLinkList_h(const LinkList L) {
+int lenLinkList_h(const LinkList *L) {
   int len = 0;
-  LNode *tmp = L->next;
+  LNode *tmp = (*L)->next;
   while (tmp) {
     tmp = tmp->next;
     len++;

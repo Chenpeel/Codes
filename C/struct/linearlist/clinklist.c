@@ -9,7 +9,7 @@ void initCircleList(LinkList *L) {
   (*L)->next = *L;
 }
 int emptyCList(LinkList L) { return L->next == L; }
-void insertNextNodeC(LNode *node, LElemType const data) {
+void insertNextNodeC(LNode *node, ElemType const data) {
   LNode *new_node = (LNode *)malloc(sizeof(LNode));
   new_node->data = data;
   new_node->next = node->next->next;

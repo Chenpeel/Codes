@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int DElemType;
+typedef int ElemType;
 
 typedef struct DNode {
-  DElemType data;
+  ElemType data;
   struct DNode *prior, *next;
 } DNode, *DLinkList;
 
 // default with head node
-void initDLinkList(DLinkList L) {
-  L = (DNode *)malloc(sizeof(DNode));
+void initDLinkList(DLinkList *L) {
+  *L = (DNode *)malloc(sizeof(DNode));
   if (L) {
-    L->next = L->prior = NULL;
+    (*L)->next = (*L)->prior = NULL;
   }
 }
 
@@ -56,8 +56,8 @@ int deletePriorNodeD(DNode *node) {
   }
   return 0;
 }
-void PrintList(const DLinkList L) {
-  DNode *tmp = L;
+void PrintList(const DLinkList *L) {
+  DNode *tmp = *L;
   while (tmp->next) {
     tmp = tmp->next;
     printf("%d", tmp->data);
@@ -69,5 +69,5 @@ void PrintFromAny(DNode *const node) {
   while (tmp->prior != NULL) {
     tmp = tmp->prior;
   }
-  PrintList(tmp);
+  PrintList(&tmp);
 }
