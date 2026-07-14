@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define MaxSize 20
-typedef char ElemType;
+typedef float ElemType;
 // 顺序栈
 typedef struct SqStack {
   ElemType data[MaxSize];
@@ -22,7 +22,7 @@ void pushSqStk(SqStk *stk, ElemType const data) {
 ElemType popSqStk(SqStk *stk) {
   if (emptySqStk(stk)) {
     printf("Stack is Empty\n");
-    return '\0';
+    return 0;
   }
   return stk->data[stk->top--];
 }
