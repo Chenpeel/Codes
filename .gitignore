@@ -11,6 +11,14 @@ CTestTestfile.cmake
 _deps
 .vscode
 .DS_Store
+Icon?
+
+*.out
+Cpp/STL/MyBasicLearned/auto_ptr/t_move_u2s_ptr
+Cpp/STL/MyBasicLearned/auto_ptr/t_shared_ptr
+Cpp/STL/MyBasicLearned/auto_ptr/t_unique_ptr
+Cpp/STL/MyBasicLearned/main
+Cpp/STL/MyBasicLearned/thread/tcp_threads_pool/echo_server
 
 MyTinySTL
 build
